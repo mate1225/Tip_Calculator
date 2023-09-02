@@ -1,0 +1,4 @@
+- Bill "$" symbol psudo element
+- Number of people symbol pshudo element
+- button selection style (if the user clicks on a button the style should stay until the user clicks on a another button)
+- continuation on the responsive design
