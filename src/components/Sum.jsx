@@ -7,7 +7,7 @@ function Sum(props) {
         <h4 className=" text-[0.8125rem] text-DarkGrayishCyan ">/ person</h4>
       </div>
 
-      <h2 className=" text-[2rem] text-StrongCyan ">{result}</h2>
+      <h2 className=" text-[2rem] text-StrongCyan lg:text-[3rem] ">{result}</h2>
     </div>
   );
 }

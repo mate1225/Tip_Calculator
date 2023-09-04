@@ -14,12 +14,12 @@ function InputBoxes(props) {
       <input
         type="text"
         onChange={handleChange}
-        className=" appearance-none rounded-[0.3125rem] bg-inputBG  
-        py-[0.38rem] pr-[1.08rem] text-right  text-VeryDarkCyan 
-       caret-StrongCyan accent-StrongCyan placeholder:text-[1.5rem] placeholder:text-DarkGrayishCyan"
+        className=" relative appearance-none rounded-[0.3125rem]  
+        bg-inputBG py-[0.38rem] pr-[1.08rem]  text-right 
+       text-VeryDarkCyan caret-StrongCyan accent-StrongCyan placeholder:text-[1.5rem] placeholder:text-DarkGrayishCyan"
         placeholder={placeholderText}
       />
-      <img src={image} />
+      <img src={image} className="absolute pl-[1.2rem] pt-[1rem]" />
     </>
   );
 }
