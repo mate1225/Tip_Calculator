@@ -20,7 +20,7 @@ function Main() {
           <Title text="Bill" margin="mb-[0.38rem]" />
           <div className="grid">
             <InputBoxes
-              nameValue="bill"
+              inputName="bill"
               image={iconDollar}
               placeholderText="0"
             />
@@ -32,12 +32,12 @@ function Main() {
             <Buttons text="15%" value={15} />
             <Buttons text="25%" value={25} />
             <Buttons text="50%" value={50} />
-            <InputBoxes placeholderText="Custom" nameValue="Custom" />
+            <InputBoxes placeholderText="Custom" inputName="Custom" />
           </div>
           <Title text="Number of People" margin="mt-8 mb-[0.38rem]" />
           <div className="grid">
             <InputBoxes
-              nameValue="people"
+              inputName="people"
               image={iconPerson}
               placeholderText="0"
             />

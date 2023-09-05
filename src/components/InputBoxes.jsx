@@ -1,13 +1,19 @@
+import React, { useState } from "react";
 function InputBoxes(props) {
-  let { placeholderText, image, nameValue } = props;
-  function handleChange() {
-    if (nameValue === "bill") {
-      console.log("bill");
-    } else if (nameValue === "people") {
-      console.log("people");
-    } else if (nameValue === "Custom") {
-      console.log("Custom");
-    }
+  let { placeholderText, image, inputName } = props;
+  const [state, setState] = useState({
+    bill: 0,
+    people: 0,
+    Custom: 0,
+  });
+
+  function handleChange(event) {
+    setState((prev) => {
+      return {
+        ...prev,
+        [event.target.name]: event.target.value,
+      };
+    });
   }
   return (
     <>
@@ -18,6 +24,7 @@ function InputBoxes(props) {
         bg-inputBG py-[0.38rem] pr-[1.08rem]  text-right 
        text-VeryDarkCyan caret-StrongCyan accent-StrongCyan placeholder:text-[1.5rem] placeholder:text-DarkGrayishCyan"
         placeholder={placeholderText}
+        name={inputName}
       />
       <img src={image} className="absolute pl-[1.2rem] pt-[1rem]" />
     </>
