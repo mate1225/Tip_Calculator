@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 function InputBoxes(props) {
-  let { placeholderText, image, inputName } = props;
-  const [state, setState] = useState({
+  const { placeholderText, image, inputName, handleChange } = props;
+  /* const [state, setState] = useState({
     bill: 0,
     people: 0,
     Custom: 0,
-  });
+  }); */
 
-  function handleChange(event) {
+  /*  function handleChange(event) {
     setState((prev) => {
       return {
         ...prev,
         [event.target.name]: event.target.value,
       };
     });
-  }
+  } */
   return (
     <>
       <input

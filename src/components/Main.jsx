@@ -7,11 +7,33 @@ import Buttons from "./Buttons";
 import Title from "./Titles";
 import InputBoxes from "./InputBoxes";
 import Sum from "./Sum";
-
+import buttonData from "./buttonData";
+import inputData from "./inputData";
 function Main() {
+  const [iptData, setIptData] = useState(inputData);
+  const [btnData, setBtnData] = useState(buttonData);
   function resetBtn() {
     //ez még csak idéglenes megoldás
     location.reload();
+  }
+
+  function handleInputChange(event) {
+    setIptData((prev) => {
+      return {
+        ...prev,
+        [event.target.name]: event.target.value,
+      };
+    });
+  }
+  function handleBtnChange(event) {
+    //még nincsen kész
+    setBtnData((prev) => {
+      return {
+        ...prev,
+        btn5: !prev.btn5,
+      };
+    });
+    console.log(buttonData);
   }
   return (
     <div className=" lg:flex lg:justify-center ">
@@ -23,16 +45,21 @@ function Main() {
               inputName="bill"
               image={iconDollar}
               placeholderText="0"
+              handleChange={handleInputChange}
             />
           </div>
           <Title text="Select Tip %" margin="mb-4 mt-8" />
           <div className=" grid grid-cols-2 gap-4 lg:grid-cols-3 lg:grid-rows-2">
-            <Buttons text="5%" value={5} />
+            <Buttons text="5%" value={5} handelClick={handleBtnChange} />
             <Buttons text="10%" value={10} />
             <Buttons text="15%" value={15} />
             <Buttons text="25%" value={25} />
             <Buttons text="50%" value={50} />
-            <InputBoxes placeholderText="Custom" inputName="Custom" />
+            <InputBoxes
+              placeholderText="Custom"
+              inputName="Custom"
+              /*  handleChange={handleChange} */
+            />
           </div>
           <Title text="Number of People" margin="mt-8 mb-[0.38rem]" />
           <div className="grid">
@@ -40,6 +67,7 @@ function Main() {
               inputName="people"
               image={iconPerson}
               placeholderText="0"
+              /* handleChange={handleChange} */
             />
           </div>
         </section>
