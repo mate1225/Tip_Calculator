@@ -32,7 +32,7 @@ function Main() {
       });
     });
   }
-  const buttonElement = btnData.map((btnElementData) => (
+  const buttonElements = btnData.map((btnElementData) => (
     <Buttons
       key={btnElementData.id}
       id={btnElementData.id}
@@ -56,7 +56,7 @@ function Main() {
           </div>
           <Title text="Select Tip %" margin="mb-4 mt-8" />
           <div className=" grid grid-cols-2 gap-4 lg:grid-cols-3 lg:grid-rows-2">
-            {buttonElement}
+            {buttonElements}
             <InputBoxes
               placeholderText="Custom"
               inputName="Custom"
