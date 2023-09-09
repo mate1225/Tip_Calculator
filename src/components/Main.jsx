@@ -10,13 +10,11 @@ import Sum from "./Sum";
 import buttonData from "./buttonData";
 import inputData from "./inputData";
 function Main() {
-  const [iptData, setIptData] = useState(inputData);
-  const [btnData, setBtnData] = useState(buttonData);
   function resetBtn() {
     //ez még csak idéglenes megoldás
     location.reload();
   }
-
+  const [iptData, setIptData] = useState(inputData);
   function handleInputChange(event) {
     setIptData((prev) => {
       return {
@@ -25,16 +23,24 @@ function Main() {
       };
     });
   }
-  function handleBtnChange(event) {
-    //még nincsen kész
+  //Buttons
+  const [btnData, setBtnData] = useState(buttonData);
+  function handleBtnChange(id) {
     setBtnData((prev) => {
-      return {
-        ...prev,
-        btn5: !prev.btn5,
-      };
+      return prev.map((btn) => {
+        return btn.id === id ? { ...btn, on: !btn.on } : { ...btn, on: false };
+      });
     });
-    console.log(buttonData);
   }
+  const buttonElement = btnData.map((btnElementData) => (
+    <Buttons
+      key={btnElementData.id}
+      id={btnElementData.id}
+      on={btnElementData.on}
+      handelClick={() => handleBtnChange(btnElementData.id)}
+      text={btnElementData.value}
+    />
+  ));
   return (
     <div className=" lg:flex lg:justify-center ">
       <main className="rounded-[1.56rem] bg-White pb-8 lg:flex lg:max-w-[57.5rem] lg:pb-0">
@@ -50,11 +56,7 @@ function Main() {
           </div>
           <Title text="Select Tip %" margin="mb-4 mt-8" />
           <div className=" grid grid-cols-2 gap-4 lg:grid-cols-3 lg:grid-rows-2">
-            <Buttons text="5%" value={5} handelClick={handleBtnChange} />
-            <Buttons text="10%" value={10} />
-            <Buttons text="15%" value={15} />
-            <Buttons text="25%" value={25} />
-            <Buttons text="50%" value={50} />
+            {buttonElement}
             <InputBoxes
               placeholderText="Custom"
               inputName="Custom"
@@ -95,6 +97,3 @@ function Main() {
 }
 
 export default Main;
-
-//$4.27
-//$32.79
