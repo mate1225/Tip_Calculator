@@ -10,10 +10,7 @@ import Sum from "./Sum";
 import buttonData from "./buttonData";
 import inputData from "./inputData";
 function Main() {
-  function resetBtn() {
-    //ez még csak idéglenes megoldás
-    location.reload();
-  }
+  //inputs
   const [iptData, setIptData] = useState(inputData);
   function handleInputChange(event) {
     setIptData((prev) => {
@@ -23,6 +20,7 @@ function Main() {
       };
     });
   }
+
   //Buttons
   const [btnData, setBtnData] = useState(buttonData);
   function handleBtnChange(id) {
@@ -41,21 +39,35 @@ function Main() {
       text={btnElementData.value}
     />
   ));
+  function getButtonData() {
+    btnData.map((btn) => {
+      btn.id === true ? console.log(btn.value) : console.log("semmi");
+    });
+  }
+  //ez lesz a funkció az eredmények ki számításához
+  function calculation() {
+    return;
+  }
+
+  function resetBtn() {
+    //ez még csak idéglenes megoldás
+    location.reload();
+  }
   return (
     <div className=" lg:flex lg:justify-center ">
-      <main className="rounded-[1.56rem] bg-White pb-8 lg:flex lg:max-w-[57.5rem] lg:pb-0">
-        <section className="p-8 lg:max-w-[23.7rem] lg:p-[3rem] lg:pr-0">
+      <main className="rounded-[1.56rem] bg-White pb-8 lg:flex lg:w-[57.5rem] lg:justify-between lg:pb-0">
+        <section className="p-8  lg:p-[3rem] lg:pr-0">
           <Title text="Bill" margin="mb-[0.38rem]" />
           <div className="grid">
             <InputBoxes
               inputName="bill"
               image={iconDollar}
               placeholderText="0"
-              handleChange={handleInputChange}
+              /* handleChange={handleInputChange} */
             />
           </div>
           <Title text="Select Tip %" margin="mb-4 mt-8" />
-          <div className=" grid grid-cols-2 gap-4 lg:grid-cols-3 lg:grid-rows-2">
+          <div className="grid grid-cols-2 gap-4 lg:w-[23.7rem] lg:grid-cols-3 lg:grid-rows-2 lg:gap-x-[0.87rem]">
             {buttonElements}
             <InputBoxes
               placeholderText="Custom"
@@ -84,8 +96,8 @@ function Main() {
           <div className="grid">
             <button
               onClick={resetBtn}
-              className=" mt-[0.63rem] rounded-[0.3125rem]
-           bg-StrongCyan py-[0.56rem] text-[1.25rem] text-VeryDarkCyan hover:bg-ButtonHoverCL"
+              className={` mt-[0.63rem] rounded-[0.3125rem]
+              bg-StrongCyan py-[0.56rem] text-[1.25rem] text-VeryDarkCyan hover:bg-ButtonHoverCL`}
             >
               RESET
             </button>

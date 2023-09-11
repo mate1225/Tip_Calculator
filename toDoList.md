@@ -1,4 +1,3 @@
-- finish the desktop layout
-- Number of people symbol pshudo element
-- button selection style (if the user clicks on a button the style should stay until the user clicks on a another button)
-- continuation on the responsive design
+- setting the reset button background color if no button or input selected/used
+- making the reset button un clicklabele if no button or input selected/used
+- get the what button is active and get the value of that button

@@ -6,7 +6,7 @@ export default [
   },
   {
     id: 2,
-    on: true,
+    on: false,
     value: 10,
   },
   {
