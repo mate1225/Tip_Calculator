@@ -33,7 +33,6 @@ function Main() {
   const buttonElements = btnData.map((btnElementData) => (
     <Buttons
       key={btnElementData.id}
-      id={btnElementData.id}
       on={btnElementData.on}
       handelClick={() => handleBtnChange(btnElementData.id)}
       text={btnElementData.value}
