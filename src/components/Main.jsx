@@ -5,13 +5,29 @@ import iconPerson from "./images/icon-person.svg";
 //jsx
 import Buttons from "./Buttons";
 import Title from "./Titles";
-import InputBoxes from "./InputBoxes";
+/* import InputBoxes from "./InputBoxes"; */
 import Sum from "./Sum";
 import buttonData from "./buttonData";
-import inputData from "./inputData";
+/* import inputData from "./inputData"; */
 function Main() {
+  //inputs state
+  const [iptData, setIptData] = useState({
+    bill: 0,
+    Custom: 0,
+    people: 0,
+  });
+  //buttons state
+  const [btnData, setBtnData] = useState(buttonData);
+  //calculations
+  function tip(billValue, tipValue, personalValue) {
+    console.log(billValue);
+    return (billValue * tipValue) / personalValue;
+  }
+  function total(billValue, tipValue, personalValue) {
+    let tipAmount = (billValue * tipValue) / personalValue;
+    return billValue / personalValue + tipAmount;
+  }
   //inputs
-  const [iptData, setIptData] = useState(inputData);
   function handleInputChange(event) {
     setIptData((prev) => {
       return {
@@ -22,7 +38,6 @@ function Main() {
   }
 
   //Buttons
-  const [btnData, setBtnData] = useState(buttonData);
   function handleBtnChange(id) {
     setBtnData((prev) => {
       return prev.map((btn) => {
@@ -44,14 +59,6 @@ function Main() {
       btn.on === true ? setBtnValue(btn.value) : "";
     });
   }
-  //calculations
-  function tip(billValue, tipValue, personalValue) {
-    return (billValue * tipValue) / personalValue;
-  }
-  function total(billValue, tipValue, personalValue) {
-    let tipAmount = (billValue * tipValue) / personalValue;
-    return billValue / personalValue + tipAmount;
-  }
 
   //reset btn
   function resetBtn() {
@@ -67,12 +74,16 @@ function Main() {
         <section className="p-8  lg:p-[3rem] lg:pr-0">
           <Title text="Bill" margin="mb-[0.38rem]" />
           <div className="grid">
-            <InputBoxes
-              inputName="bill"
-              image={iconDollar}
-              placeholderText="0"
-              /* handleChange={handleInputChange} */
+            <input
+              type="text"
+              onChange={handleInputChange}
+              className=" relative appearance-none rounded-[0.3125rem]  
+                        bg-inputBG py-[0.38rem] pr-[1.08rem]  text-right 
+                        text-VeryDarkCyan caret-StrongCyan accent-StrongCyan placeholder:text-[1.5rem] placeholder:text-DarkGrayishCyan"
+              placeholder="0"
+              name="bill"
             />
+            <img src={iconDollar} className="absolute pl-[1.2rem] pt-[1rem]" />
           </div>
           <Title text="Select Tip %" margin="mb-4 mt-8" />
           <div
@@ -80,20 +91,28 @@ function Main() {
            lg:grid-rows-2 lg:gap-x-[0.87rem]"
           >
             {buttonElements}
-            <InputBoxes
-              placeholderText="Custom"
-              inputName="Custom"
-              /*  handleChange={handleChange} */
+            <input
+              type="text"
+              onChange={handleInputChange}
+              className=" relative appearance-none rounded-[0.3125rem]  
+        bg-inputBG py-[0.38rem] pr-[1.08rem]  text-right 
+       text-VeryDarkCyan caret-StrongCyan accent-StrongCyan placeholder:text-[1.5rem] placeholder:text-DarkGrayishCyan"
+              placeholder="Custom"
+              name="Custom"
             />
           </div>
           <Title text="Number of People" margin="mt-8 mb-[0.38rem]" />
           <div className="grid">
-            <InputBoxes
-              inputName="people"
-              image={iconPerson}
-              placeholderText="0"
-              /* handleChange={handleChange} */
+            <input
+              type="text"
+              onChange={handleInputChange}
+              className=" relative appearance-none rounded-[0.3125rem]  
+                        bg-inputBG py-[0.38rem] pr-[1.08rem]  text-right 
+                        text-VeryDarkCyan caret-StrongCyan accent-StrongCyan placeholder:text-[1.5rem] placeholder:text-DarkGrayishCyan"
+              placeholder="0"
+              name="people"
             />
+            <img src={iconPerson} className="absolute pl-[1.2rem] pt-[1rem]" />
           </div>
         </section>
         <section
@@ -102,8 +121,8 @@ function Main() {
          lg:w-[25.8rem] lg:justify-between"
         >
           <div>
-            <Sum result={tip(50, 0.2, 5)} title="Tip Amount" />
-            <Sum result={total(50, 0.2, 5)} title="Total" />
+            <Sum result={tip(50, 0.25, 5)} title="Tip Amount" />
+            <Sum result={total(50, 0.25, 5)} title="Total" />
           </div>
           <div className="grid">
             <button
