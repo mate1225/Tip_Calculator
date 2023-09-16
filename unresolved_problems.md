@@ -1,0 +1,1 @@
+- az inputoknak nem használják a sajaát komponensüket

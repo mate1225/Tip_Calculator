@@ -4,4 +4,5 @@
 - us the buttons value to the calculation (to display number)
 - if the "custom" input is used make the buttons value to 0
 - if the "custom" input is used and the user is click on a button make the custom input value to 0 and use the button value insted of the "custom" input
+- solvig the problem whit the value and reset of the input boxes
 - ...

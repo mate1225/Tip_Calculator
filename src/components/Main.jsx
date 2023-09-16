@@ -8,28 +8,29 @@ import Title from "./Titles";
 /* import InputBoxes from "./InputBoxes"; */
 import Sum from "./Sum";
 import buttonData from "./buttonData";
+import ResetBtn from "./ResetBtn";
 function Main() {
   //inputs state
-  const [iptData, setIptData] = useState({
+  const [iptState, setIptState] = useState({
     bill: 0,
     Custom: 0,
     people: 0,
   });
   //buttons state
-  const [btnData, setBtnData] = useState(buttonData);
+  const [btnState, setBtnState] = useState(buttonData);
   //calculations
   function tip() {
-    if (iptData.bill > 0 && iptData.people > 0) {
-      let output = (iptData.bill * iptData.Custom) / iptData.people;
+    if (iptState.bill > 0 && iptState.people > 0) {
+      let output = (iptState.bill * iptState.Custom) / iptState.people;
       return output.toFixed(2);
     } else {
       return "0.00";
     }
   }
   function total() {
-    if (iptData.bill > 0 && iptData.people > 0) {
-      let tipAmount = (iptData.bill * iptData.Custom) / iptData.people;
-      let output = iptData.bill / iptData.people + tipAmount;
+    if (iptState.bill > 0 && iptState.people > 0) {
+      let tipAmount = (iptState.bill * iptState.Custom) / iptState.people;
+      let output = iptState.bill / iptState.people + tipAmount;
       return output.toFixed(2);
     } else {
       return "0.00";
@@ -37,7 +38,7 @@ function Main() {
   }
   //inputs
   function handleInputChange(event) {
-    setIptData((prev) => {
+    setIptState((prev) => {
       return {
         ...prev,
         [event.target.name]: event.target.value,
@@ -47,13 +48,13 @@ function Main() {
 
   //Buttons
   function handleBtnChange(id) {
-    setBtnData((prev) => {
+    setBtnState((prev) => {
       return prev.map((btn) => {
         return btn.id === id ? { ...btn, on: !btn.on } : { ...btn, on: false };
       });
     });
   }
-  const buttonElements = btnData.map((btnElementData) => (
+  const buttonElements = btnState.map((btnElementData) => (
     <Buttons
       key={btnElementData.id}
       on={btnElementData.on}
@@ -70,8 +71,15 @@ function Main() {
 
   //reset btn
   function resetBtn() {
-    //ez még csak idéglenes megoldás
-    location.reload();
+    setBtnState(buttonData);
+    setIptState({
+      bill: 0,
+      Custom: 0,
+      people: 0,
+    });
+  }
+  function errorMessages() {
+    console.log("error");
   }
   return (
     <div className=" lg:flex lg:justify-center ">
@@ -90,6 +98,7 @@ function Main() {
                         text-VeryDarkCyan caret-StrongCyan accent-StrongCyan placeholder:text-[1.5rem] placeholder:text-DarkGrayishCyan"
               placeholder="0"
               name="bill"
+              value={iptState.bill}
             />
             <img src={iconDollar} className="absolute pl-[1.2rem] pt-[1rem]" />
           </div>
@@ -107,6 +116,7 @@ function Main() {
        text-VeryDarkCyan caret-StrongCyan accent-StrongCyan placeholder:text-[1.5rem] placeholder:text-DarkGrayishCyan"
               placeholder="Custom"
               name="Custom"
+              value={iptState.Custom}
             />
           </div>
           <Title text="Number of People" margin="mt-8 mb-[0.38rem]" />
@@ -119,6 +129,7 @@ function Main() {
                         text-VeryDarkCyan caret-StrongCyan accent-StrongCyan placeholder:text-[1.5rem] placeholder:text-DarkGrayishCyan"
               placeholder="0"
               name="people"
+              value={iptState.people}
             />
             <img src={iconPerson} className="absolute pl-[1.2rem] pt-[1rem]" />
           </div>
@@ -132,16 +143,18 @@ function Main() {
             <Sum result={tip()} title="Tip Amount" />
             <Sum result={total()} title="Total" />
           </div>
-          <div className="grid">
-            <button
-              onClick={resetBtn}
-              className={` mt-[0.63rem] rounded-[0.3125rem]
-              bg-StrongCyan py-[0.56rem] text-[1.25rem] text-VeryDarkCyan 
-              hover:bg-ButtonHoverCL`}
-            >
-              RESET
-            </button>
-          </div>
+          <ResetBtn
+            customStyle={
+              iptState.bill && iptState.Custom && iptState.people
+                ? "bg-StrongCyan hover:bg-ButtonHoverCL"
+                : "bg-InputFalse cursor-default"
+            }
+            reset={
+              iptState.bill && iptState.Custom && iptState.people
+                ? () => resetBtn()
+                : () => errorMessages()
+            }
+          />
         </section>
       </main>
     </div>
