@@ -8,7 +8,6 @@ import Title from "./Titles";
 /* import InputBoxes from "./InputBoxes"; */
 import Sum from "./Sum";
 import buttonData from "./buttonData";
-/* import inputData from "./inputData"; */
 function Main() {
   //inputs state
   const [iptData, setIptData] = useState({
@@ -19,11 +18,10 @@ function Main() {
   //buttons state
   const [btnData, setBtnData] = useState(buttonData);
   //calculations
-
-  /*work in progress*/
   function tip() {
     if (iptData.bill > 0 && iptData.people > 0) {
-      return (iptData.bill * iptData.Custom) / iptData.people;
+      let output = (iptData.bill * iptData.Custom) / iptData.people;
+      return output.toFixed(2);
     } else {
       return "0.00";
     }
@@ -31,7 +29,8 @@ function Main() {
   function total() {
     if (iptData.bill > 0 && iptData.people > 0) {
       let tipAmount = (iptData.bill * iptData.Custom) / iptData.people;
-      return iptData.bill / iptData.people + tipAmount;
+      let output = iptData.bill / iptData.people + tipAmount;
+      return output.toFixed(2);
     } else {
       return "0.00";
     }

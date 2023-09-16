@@ -1,3 +1,7 @@
 - setting the reset button background color if no button or input selected/used
 - making the reset button un clicklabele if no button or input selected/used
 - get the what button is active and get the value of that button
+- us the buttons value to the calculation (to display number)
+- if the "custom" input is used make the buttons value to 0
+- if the "custom" input is used and the user is click on a button make the custom input value to 0 and use the button value insted of the "custom" input
+- ...
