@@ -19,13 +19,22 @@ function Main() {
   //buttons state
   const [btnData, setBtnData] = useState(buttonData);
   //calculations
-  function tip(billValue, tipValue, personalValue) {
-    console.log(billValue);
-    return (billValue * tipValue) / personalValue;
+
+  /*work in progress*/
+  function tip() {
+    if (iptData.bill > 0 && iptData.people > 0) {
+      return (iptData.bill * iptData.Custom) / iptData.people;
+    } else {
+      return "0.00";
+    }
   }
-  function total(billValue, tipValue, personalValue) {
-    let tipAmount = (billValue * tipValue) / personalValue;
-    return billValue / personalValue + tipAmount;
+  function total() {
+    if (iptData.bill > 0 && iptData.people > 0) {
+      let tipAmount = (iptData.bill * iptData.Custom) / iptData.people;
+      return iptData.bill / iptData.people + tipAmount;
+    } else {
+      return "0.00";
+    }
   }
   //inputs
   function handleInputChange(event) {
@@ -53,12 +62,12 @@ function Main() {
       text={btnElementData.value}
     />
   ));
-  const [btnValue, setBtnValue] = useState(0);
+  /* const [btnValue, setBtnValue] = useState(0);
   function getButtonData() {
     btnData.map((btn) => {
       btn.on === true ? setBtnValue(btn.value) : "";
     });
-  }
+  } */
 
   //reset btn
   function resetBtn() {
@@ -121,8 +130,8 @@ function Main() {
          lg:w-[25.8rem] lg:justify-between"
         >
           <div>
-            <Sum result={tip(50, 0.25, 5)} title="Tip Amount" />
-            <Sum result={total(50, 0.25, 5)} title="Total" />
+            <Sum result={tip()} title="Tip Amount" />
+            <Sum result={total()} title="Total" />
           </div>
           <div className="grid">
             <button
