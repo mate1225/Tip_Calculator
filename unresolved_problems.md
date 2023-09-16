@@ -1,1 +1,2 @@
 - az inputoknak nem használják a sajaát komponensüket
+- (ez nem tudom mennyire gond de )az inputok adata alapból egy üres string amit később a jávascript vált átt számmá a számítások elvégézéshez

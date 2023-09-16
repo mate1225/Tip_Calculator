@@ -12,16 +12,17 @@ import ResetBtn from "./ResetBtn";
 function Main() {
   //inputs state
   const [iptState, setIptState] = useState({
-    bill: 0,
-    Custom: 0,
-    people: 0,
+    bill: "",
+    Custom: "",
+    people: "",
   });
   //buttons state
   const [btnState, setBtnState] = useState(buttonData);
+  const [btnValue, setBtnValue] = useState(0);
   //calculations
   function tip() {
     if (iptState.bill > 0 && iptState.people > 0) {
-      let output = (iptState.bill * iptState.Custom) / iptState.people;
+      let output = (iptState.bill * (iptState.Custom / 100)) / iptState.people;
       return output.toFixed(2);
     } else {
       return "0.00";
@@ -29,13 +30,15 @@ function Main() {
   }
   function total() {
     if (iptState.bill > 0 && iptState.people > 0) {
-      let tipAmount = (iptState.bill * iptState.Custom) / iptState.people;
+      let tipAmount =
+        (iptState.bill * (iptState.Custom / 100)) / iptState.people;
       let output = iptState.bill / iptState.people + tipAmount;
       return output.toFixed(2);
     } else {
       return "0.00";
     }
   }
+
   //inputs
   function handleInputChange(event) {
     setIptState((prev) => {
@@ -53,6 +56,9 @@ function Main() {
         return btn.id === id ? { ...btn, on: !btn.on } : { ...btn, on: false };
       });
     });
+    btnState.map((btn) => {
+      btn.on === true ? setBtnValue(btn.value) : console.log("");
+    });
   }
   const buttonElements = btnState.map((btnElementData) => (
     <Buttons
@@ -62,25 +68,19 @@ function Main() {
       text={btnElementData.value}
     />
   ));
-  /* const [btnValue, setBtnValue] = useState(0);
-  function getButtonData() {
-    btnData.map((btn) => {
-      btn.on === true ? setBtnValue(btn.value) : "";
-    });
-  } */
-
   //reset btn
   function resetBtn() {
     setBtnState(buttonData);
     setIptState({
-      bill: 0,
-      Custom: 0,
-      people: 0,
+      bill: "",
+      Custom: "",
+      people: "",
     });
   }
   function errorMessages() {
     console.log("error");
   }
+
   return (
     <div className=" lg:flex lg:justify-center ">
       <main
