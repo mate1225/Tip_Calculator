@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 //image
 import iconDollar from "./images/icon-dollar.svg";
 import iconPerson from "./images/icon-person.svg";
@@ -20,9 +20,15 @@ function Main() {
   const [btnState, setBtnState] = useState(buttonData);
   const [btnValue, setBtnValue] = useState(0);
   //calculations and displaying result
+  let percentageValue;
+  if (iptState.Custom !== "") {
+    percentageValue = iptState.Custom;
+  } else if (iptState.Custom === "") {
+    percentageValue = btnValue;
+  }
   function tip() {
     if (iptState.bill > 0 && iptState.people > 0) {
-      let output = (iptState.bill * (iptState.Custom / 100)) / iptState.people;
+      let output = (iptState.bill * (percentageValue / 100)) / iptState.people;
       return output.toFixed(2);
     } else {
       return "0.00";
@@ -31,7 +37,7 @@ function Main() {
   function total() {
     if (iptState.bill > 0 && iptState.people > 0) {
       let tipAmount =
-        (iptState.bill * (iptState.Custom / 100)) / iptState.people;
+        (iptState.bill * (percentageValue / 100)) / iptState.people;
       let output = iptState.bill / iptState.people + tipAmount;
       return output.toFixed(2);
     } else {
@@ -48,7 +54,7 @@ function Main() {
       };
     });
   }
-
+  console.log(btnValue);
   //Buttons
   function handleBtnChange(id) {
     setBtnState((prev) => {
@@ -57,9 +63,10 @@ function Main() {
       });
     });
     btnState.map((btn) => {
-      btn.on === true ? setBtnValue(btn.value) : console.log("");
+      btn.id === id ? setBtnValue(btn.value) : "";
     });
   }
+
   const buttonElements = btnState.map((btnElementData) => (
     <Buttons
       key={btnElementData.id}
