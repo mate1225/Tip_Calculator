@@ -19,7 +19,7 @@ function Main() {
   //buttons state
   const [btnState, setBtnState] = useState(buttonData);
   const [btnValue, setBtnValue] = useState(0);
-  //calculations
+  //calculations and displaying result
   function tip() {
     if (iptState.bill > 0 && iptState.people > 0) {
       let output = (iptState.bill * (iptState.Custom / 100)) / iptState.people;
