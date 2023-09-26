@@ -26,8 +26,9 @@ function Main() {
   } else if (iptState.Custom === "") {
     percentageValue = btnValue;
   }
+
   function tip() {
-    if (iptState.bill > 0 && iptState.people > 0) {
+    if (iptState.bill > 0 && iptState.people > 0 && percentageValue > 0) {
       let output = (iptState.bill * (percentageValue / 100)) / iptState.people;
       return output.toFixed(2);
     } else {
@@ -35,7 +36,7 @@ function Main() {
     }
   }
   function total() {
-    if (iptState.bill > 0 && iptState.people > 0) {
+    if (iptState.bill > 0 && iptState.people > 0 && percentageValue > 0) {
       let tipAmount =
         (iptState.bill * (percentageValue / 100)) / iptState.people;
       let output = iptState.bill / iptState.people + tipAmount;
@@ -84,9 +85,6 @@ function Main() {
       people: "",
     });
   }
-  function errorMessages() {
-    console.log("error");
-  }
 
   return (
     <div className=" lg:flex lg:justify-center ">
@@ -109,12 +107,14 @@ function Main() {
             />
             <img src={iconDollar} className="absolute pl-[1.2rem] pt-[1rem]" />
           </div>
+
           <Title text="Select Tip %" margin="mb-4 mt-8" />
           <div
             className="grid grid-cols-2 gap-4 lg:w-[23.7rem] lg:grid-cols-3
            lg:grid-rows-2 lg:gap-x-[0.87rem]"
           >
             {buttonElements}
+
             <input
               type="text"
               onChange={handleInputChange}
@@ -126,6 +126,7 @@ function Main() {
               value={iptState.Custom}
             />
           </div>
+
           <Title text="Number of People" margin="mt-8 mb-[0.38rem]" />
           <div className="grid">
             <input
@@ -156,11 +157,7 @@ function Main() {
                 ? "bg-StrongCyan hover:bg-ButtonHoverCL"
                 : "bg-InputFalse cursor-default"
             }
-            reset={
-              iptState.bill && iptState.Custom && iptState.people
-                ? () => resetBtn()
-                : () => errorMessages()
-            }
+            reset={resetBtn()}
           />
         </section>
       </main>
