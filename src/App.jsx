@@ -4,13 +4,13 @@ import "./App.css";
 
 //jsx components
 import Header from "./components/Header";
-import Main from "./components/Main";
+import MainContent from "./components/MainContent";
 
 function App() {
   return (
     <div>
       <Header />
-      <Main />
+      <MainContent />
     </div>
   );
 }
