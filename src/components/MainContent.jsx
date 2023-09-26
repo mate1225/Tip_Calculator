@@ -153,11 +153,11 @@ function Main() {
           </div>
           <ResetBtn
             customStyle={
-              iptState.bill && iptState.Custom && iptState.people
+              iptState.bill || iptState.Custom || iptState.people
                 ? "bg-StrongCyan hover:bg-ButtonHoverCL"
                 : "bg-InputFalse cursor-default"
             }
-            reset={resetBtn()}
+            reset={() => resetBtn()}
           />
         </section>
       </main>
