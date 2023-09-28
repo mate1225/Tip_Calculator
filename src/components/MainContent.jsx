@@ -9,6 +9,7 @@ import Title from "./Titles";
 import Sum from "./Sum";
 import buttonData from "./buttonData";
 import ResetBtn from "./ResetBtn";
+
 function Main() {
   //inputs state
   const [iptState, setIptState] = useState({
@@ -55,7 +56,7 @@ function Main() {
       };
     });
   }
-  console.log(btnValue);
+
   //Buttons
   function handleBtnChange(id) {
     setBtnState((prev) => {
