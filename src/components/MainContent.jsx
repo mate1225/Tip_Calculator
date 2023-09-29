@@ -20,11 +20,25 @@ function Main() {
   //buttons state
   const [btnState, setBtnState] = useState(buttonData);
   const [btnValue, setBtnValue] = useState(0);
+  //if all buttons inactive make the "btnValue" 0
+  useEffect(() => {
+    let array = [];
+    btnState.map((onData) => {
+      array.push(onData.on);
+    });
+    const findTrueValue = array.find((element) => element === true);
+    findTrueValue === undefined ? setBtnValue(0) : "";
+  }),
+    [btnState];
   //calculations and displaying result
   let percentageValue;
-  if (iptState.Custom !== "") {
+  if (iptState.Custom !== "" && iptState.Custom !== "0") {
     percentageValue = iptState.Custom;
-  } else if (iptState.Custom === "") {
+    //if "custom" input is used and the value is not = to "0" make the buttons inactive
+    /*  useEffect(() => {
+      setBtnState(buttonData);
+    }, []); */
+  } else {
     percentageValue = btnValue;
   }
 
@@ -56,7 +70,7 @@ function Main() {
       };
     });
   }
-
+  console.log(iptState);
   //Buttons
   function handleBtnChange(id) {
     setBtnState((prev) => {
