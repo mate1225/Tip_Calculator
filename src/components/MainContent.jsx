@@ -11,6 +11,8 @@ import buttonData from "./buttonData";
 import ResetBtn from "./ResetBtn";
 
 function Main() {
+  //error
+  const [errorState, setErrorState] = useState("error");
   //inputs state
   const [iptState, setIptState] = useState({
     bill: "",
@@ -43,7 +45,17 @@ function Main() {
   }
 
   function tip() {
-    if (iptState.bill > 0 && iptState.people > 0 && percentageValue > 0) {
+    //error handeling
+    if (
+      iptState.bill > 10000 ||
+      iptState.people > 10000 ||
+      percentageValue > 100
+    ) {
+    } else if (
+      iptState.bill > 0 &&
+      iptState.people > 0 &&
+      percentageValue > 0
+    ) {
       let output = (iptState.bill * (percentageValue / 100)) / iptState.people;
       return output.toFixed(2);
     } else {
@@ -122,7 +134,9 @@ function Main() {
             />
             <img src={iconDollar} className="absolute pl-[1.2rem] pt-[1rem]" />
           </div>
-
+          {/*  <div className=" mt-3 flex justify-end">
+            <p className=" text-Red absolute text-[0.7rem] ">{errorState}</p>
+          </div> */}
           <Title text="Select Tip %" margin="mb-4 mt-8" />
           <div
             className="grid grid-cols-2 gap-4 lg:w-[23.7rem] lg:grid-cols-3

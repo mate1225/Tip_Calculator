@@ -13,6 +13,7 @@ export default {
       inputBG: "hsla(185, 38%, 97%, 1)",
       ButtonHoverCL: "hsla(173, 61%, 77%, 1)",
       InputFalse: "hsla(183, 78%, 24%, 1)",
+      Red: "#c61306",
     },
     extend: {},
   },
