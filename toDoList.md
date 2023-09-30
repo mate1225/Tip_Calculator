@@ -1,4 +1,0 @@
-- if the "custom" input is used and the user is click on a button make the custom input value to 0 and use the button value insted of the "custom" input
-- displaying error massages if the reset button is clicked but there are empty input filed (btn values included)
-- input validation !! ("custom" should be between 0-100 ;"bill" should be between 0-10 000; "People" should be between 0-10 000 )
-- ...

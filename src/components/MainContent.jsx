@@ -36,20 +36,16 @@ function Main() {
   let percentageValue;
   if (iptState.Custom !== "" && iptState.Custom !== "0") {
     percentageValue = iptState.Custom;
-    //if "custom" input is used and the value is not = to "0" make the buttons inactive
-    /*  useEffect(() => {
-      setBtnState(buttonData);
-    }, []); */
   } else {
     percentageValue = btnValue;
   }
 
   function tip() {
-    //error handeling
+    //error handling
     if (
-      iptState.bill > 10000 ||
-      iptState.people > 10000 ||
-      percentageValue > 100
+      iptState.bill >= 10000 ||
+      iptState.people >= 10000 ||
+      percentageValue >= 100
     ) {
     } else if (
       iptState.bill > 0 &&
@@ -62,6 +58,7 @@ function Main() {
       return "0.00";
     }
   }
+
   function total() {
     if (iptState.bill > 0 && iptState.people > 0 && percentageValue > 0) {
       let tipAmount =
