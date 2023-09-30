@@ -35,23 +35,30 @@ function Main() {
   //calculations and displaying result
   let percentageValue;
   if (iptState.Custom !== "" && iptState.Custom !== "0") {
+    console.log("custom");
     percentageValue = iptState.Custom;
   } else {
     percentageValue = btnValue;
   }
+  // resting data
+  //ez még nem tökéletes megoldás
+  /*  useEffect(() => {
+    console.log("reset buttonData");
+    setBtnState(buttonData);
+  }, [iptState.Custom]);
+
+  useEffect(() => {
+    console.log("reset iptState");
+    setIptState((prev) => {
+      return {
+        ...prev,
+        Custom: "",
+      };
+    });
+  }, [btnValue]); */
 
   function tip() {
-    //error handling
-    if (
-      iptState.bill >= 10000 ||
-      iptState.people >= 10000 ||
-      percentageValue >= 100
-    ) {
-    } else if (
-      iptState.bill > 0 &&
-      iptState.people > 0 &&
-      percentageValue > 0
-    ) {
+    if (iptState.bill > 0 && iptState.people > 0 && percentageValue > 0) {
       let output = (iptState.bill * (percentageValue / 100)) / iptState.people;
       return output.toFixed(2);
     } else {
@@ -79,7 +86,7 @@ function Main() {
       };
     });
   }
-  console.log(iptState);
+  /* console.log(iptState); */
   //Buttons
   function handleBtnChange(id) {
     setBtnState((prev) => {
