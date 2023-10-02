@@ -27,7 +27,7 @@ function Main() {
     console.log(iptState.Custom);
     const findTrueValue = btnState.find((item) => item.on === true);
 
-    if (findTrueValue === undefined) {
+    if (findTrueValue === undefined && btnValue !== 0) {
       console.log("btn value set to 0");
       setBtnValue(0);
     }
