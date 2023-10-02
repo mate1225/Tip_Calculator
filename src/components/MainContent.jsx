@@ -199,7 +199,7 @@ function Main() {
     });
   }
   useEffect(() => {
-    if (iptState.Custom > 0 && iptState.Custom < 100) {
+    if ((iptState.Custom > 0 && iptState.Custom < 100) || btnValue > 0) {
       setErrorState((prev) => {
         return {
           ...prev,
@@ -207,7 +207,7 @@ function Main() {
         };
       });
     }
-  }, [iptState.Custom]);
+  }, [iptState.Custom, btnValue]);
   //people
   if (iptState.people > 1000) {
     setIptState((prev) => {
