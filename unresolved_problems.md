@@ -13,8 +13,7 @@ kód struktúrális problémák:
 
 felhasználói szepmontból nézet problémák:
 
-- nincsen semmilyen szabályozás, tehát a felhasználó akár 10000000-ret is bírhat a "custom" mezőbe, ahova max 100 kerülhetne . E mellet ha a többi mezőbe nagyon nagy számokat írnak be akkor elkezdenk ki lógni egyre jobban a karakterek a "dobozból".
-- ha frissítik az oldalt véletlenül minden adat eltűnik
+- nincsen hiba üzenet arra hogyha a felhasználó szöveget kezd el be írni
 
 ```
 
