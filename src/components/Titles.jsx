@@ -1,9 +1,7 @@
 function Title(props) {
   return (
     <>
-      <h2 className={`${props.margin}  text-[1rem] text-DarkGrayishCyan`}>
-        {props.text}
-      </h2>
+      <h2 className={` text-[1rem] text-DarkGrayishCyan`}>{props.text}</h2>
     </>
   );
 }

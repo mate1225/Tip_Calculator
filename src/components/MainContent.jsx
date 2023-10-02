@@ -9,10 +9,15 @@ import Title from "./Titles";
 import Sum from "./Sum";
 import buttonData from "./buttonData";
 import ResetBtn from "./ResetBtn";
+import Error from "./Error";
 
 function Main() {
   //error
-  const [errorState, setErrorState] = useState("error");
+  const [errorState, setErrorState] = useState({
+    bill: "",
+    Custom: "",
+    people: "",
+  });
   //inputs state
   const [iptState, setIptState] = useState({
     bill: "",
@@ -117,8 +122,131 @@ function Main() {
       Custom: "",
       people: "",
     });
+    setErrorState({
+      bill: "",
+      Custom: "",
+      people: "",
+    });
+    setBtnValue(0);
   }
+  //form validation
+  //bill
+  if (iptState.bill > 10000) {
+    setIptState((prev) => {
+      return {
+        ...prev,
+        bill: "",
+      };
+    });
 
+    setErrorState((prev) => {
+      return {
+        ...prev,
+        bill: "can't be grater then 100000",
+      };
+    });
+  } else if (iptState.bill === "0") {
+    setIptState((prev) => {
+      return {
+        ...prev,
+        bill: "",
+      };
+    });
+    setErrorState((prev) => {
+      return {
+        ...prev,
+        bill: "can't be 0",
+      };
+    });
+  }
+  useEffect(() => {
+    if (iptState.bill > "0" && iptState.bill < "100000") {
+      setErrorState((prev) => {
+        return {
+          ...prev,
+          bill: "",
+        };
+      });
+    }
+  }, [iptState.bill]);
+  //tip
+  if (iptState.Custom > 100) {
+    setIptState((prev) => {
+      return {
+        ...prev,
+        Custom: "",
+      };
+    });
+
+    setErrorState((prev) => {
+      return {
+        ...prev,
+        Custom: "can't be grater then 100",
+      };
+    });
+  } else if (iptState.Custom === "0") {
+    setIptState((prev) => {
+      return {
+        ...prev,
+        Custom: "",
+      };
+    });
+    setErrorState((prev) => {
+      return {
+        ...prev,
+        Custom: "can't be 0",
+      };
+    });
+  }
+  useEffect(() => {
+    if (iptState.Custom > 0 && iptState.Custom < 100) {
+      setErrorState((prev) => {
+        return {
+          ...prev,
+          Custom: "",
+        };
+      });
+    }
+  }, [iptState.Custom]);
+  //people
+  if (iptState.people > 1000) {
+    setIptState((prev) => {
+      return {
+        ...prev,
+        people: "",
+      };
+    });
+
+    setErrorState((prev) => {
+      return {
+        ...prev,
+        people: "can't be grater then 1000",
+      };
+    });
+  } else if (iptState.people === "0") {
+    setIptState((prev) => {
+      return {
+        ...prev,
+        people: "",
+      };
+    });
+    setErrorState((prev) => {
+      return {
+        ...prev,
+        people: "can't be 0",
+      };
+    });
+  }
+  useEffect(() => {
+    if (iptState.people > "0" && iptState.people < "1000") {
+      setErrorState((prev) => {
+        return {
+          ...prev,
+          people: "",
+        };
+      });
+    }
+  }, [iptState.people]);
   return (
     <div className=" lg:flex lg:justify-center ">
       <main
@@ -126,7 +254,11 @@ function Main() {
       lg:justify-between lg:pb-0"
       >
         <section className="p-8  lg:p-[3rem] lg:pr-0">
-          <Title text="Bill" margin="mb-[0.38rem]" />
+          <div className=" mb-[0.38rem] flex items-center justify-between">
+            <Title text="Bill" />
+            <Error text={errorState.bill} />
+          </div>
+
           <div className="grid">
             <input
               type="text"
@@ -140,10 +272,11 @@ function Main() {
             />
             <img src={iconDollar} className="absolute pl-[1.2rem] pt-[1rem]" />
           </div>
-          {/*  <div className=" mt-3 flex justify-end">
-            <p className=" text-Red absolute text-[0.7rem] ">{errorState}</p>
-          </div> */}
-          <Title text="Select Tip %" margin="mb-4 mt-8" />
+          <div className=" mb-4 mt-8 flex items-center justify-between">
+            <Title text="Select Tip %" />
+            <Error text={errorState.Custom} />
+          </div>
+
           <div
             className="grid grid-cols-2 gap-4 lg:w-[23.7rem] lg:grid-cols-3
            lg:grid-rows-2 lg:gap-x-[0.87rem]"
@@ -162,7 +295,11 @@ function Main() {
             />
           </div>
 
-          <Title text="Number of People" margin="mt-8 mb-[0.38rem]" />
+          <div className=" mb-[0.38rem] mt-8 flex items-center justify-between">
+            <Title text="Number of People" />
+            <Error text={errorState.people} />
+          </div>
+
           <div className="grid">
             <input
               type="text"
