@@ -24,38 +24,40 @@ function Main() {
   const [btnValue, setBtnValue] = useState(0);
   //if all buttons inactive make the "btnValue" 0
   useEffect(() => {
-    let array = [];
-    btnState.map((onData) => {
-      array.push(onData.on);
-    });
-    const findTrueValue = array.find((element) => element === true);
-    findTrueValue === undefined ? setBtnValue(0) : "";
+    console.log(iptState.Custom);
+    const findTrueValue = btnState.find((item) => item.on === true);
+
+    if (findTrueValue === undefined) {
+      console.log("btn value set to 0");
+      setBtnValue(0);
+    }
   }),
     [btnState];
   //calculations and displaying result
   let percentageValue;
   if (iptState.Custom !== "" && iptState.Custom !== "0") {
-    console.log("custom");
     percentageValue = iptState.Custom;
   } else {
     percentageValue = btnValue;
   }
-  // resting data
-  //ez még nem tökéletes megoldás
-  /*  useEffect(() => {
-    console.log("reset buttonData");
-    setBtnState(buttonData);
+  //reset btn/custom input filed
+  useEffect(() => {
+    if (iptState.Custom !== "") {
+      setBtnState(buttonData);
+      setBtnValue(0);
+    }
   }, [iptState.Custom]);
 
   useEffect(() => {
-    console.log("reset iptState");
-    setIptState((prev) => {
-      return {
-        ...prev,
-        Custom: "",
-      };
-    });
-  }, [btnValue]); */
+    if (btnValue !== 0) {
+      setIptState((prev) => {
+        return {
+          ...prev,
+          Custom: "",
+        };
+      });
+    }
+  }, [btnState]);
 
   function tip() {
     if (iptState.bill > 0 && iptState.people > 0 && percentageValue > 0) {
@@ -86,7 +88,7 @@ function Main() {
       };
     });
   }
-  /* console.log(iptState); */
+
   //Buttons
   function handleBtnChange(id) {
     setBtnState((prev) => {
