@@ -243,7 +243,7 @@ function Main() {
          placeholder:text-DarkGrayishCyan 
           focus:outline-none ${
             errorState.Custom !== ""
-              ? "  border-Error"
+              ? "  focus:border-Error"
               : "focus:border-StrongCyan"
           }`}
               placeholder="Custom"
