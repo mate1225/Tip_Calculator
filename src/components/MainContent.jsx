@@ -27,15 +27,6 @@ function Main() {
   //buttons state
   const [btnState, setBtnState] = useState(buttonData);
   const [btnValue, setBtnValue] = useState(0);
-  //if all buttons inactive make the "btnValue" 0
-  useEffect(() => {
-    const findTrueValue = btnState.find((item) => item.on === true);
-
-    if (findTrueValue === undefined && btnValue !== 0) {
-      setBtnValue(0);
-    }
-  }),
-    [btnState];
   //calculations and displaying result
   let percentageValue;
   if (iptState.Custom !== "" && iptState.Custom !== 0) {
@@ -229,6 +220,7 @@ function Main() {
             inputName="bill"
             inputValue={iptState.bill}
             image={iconDollar}
+            error={errorState.bill}
           />
           <SectionHeader
             text={errorState.Custom}
@@ -243,9 +235,17 @@ function Main() {
             <input
               type="text"
               onChange={handleInputChange}
-              className=" relative appearance-none rounded-[0.3125rem]  
-        bg-inputBG py-[0.38rem] pr-[1.08rem]  text-right 
-       text-VeryDarkCyan caret-StrongCyan accent-StrongCyan placeholder:text-[1.5rem] placeholder:text-DarkGrayishCyan"
+              className={` relative    
+        appearance-none rounded-[0.3125rem] border-2  border-solid 
+        border-inputBG bg-inputBG   py-[0.38rem]  
+       pr-[1.08rem]  text-right text-VeryDarkCyan
+        caret-StrongCyan placeholder:text-[1.5rem]
+         placeholder:text-DarkGrayishCyan 
+          focus:outline-none ${
+            errorState.Custom !== ""
+              ? "border-Error"
+              : "focus:border-StrongCyan"
+          }`}
               placeholder="Custom"
               name="Custom"
               value={iptState.Custom}
@@ -262,6 +262,7 @@ function Main() {
             inputName="people"
             inputValue={iptState.people}
             image={iconPerson}
+            error={errorState.people}
           />
         </section>
         <section

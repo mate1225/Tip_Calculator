@@ -1,5 +1,5 @@
 kód struktúrális problémák:
 
-- nem reseteli a megfelelő időben a "btnValue" értékét a kód
+felhasználói szepmontból nézet problémák:
 
-  felhasználói szepmontból nézet problémák:
+- nem lehet tört számot be írni
