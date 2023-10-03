@@ -1,7 +1,7 @@
-function Title(props) {
+function Title({ text }) {
   return (
     <>
-      <h2 className={` text-[1rem] text-DarkGrayishCyan`}>{props.text}</h2>
+      <h2 className={` text-[1rem] text-DarkGrayishCyan`}>{text}</h2>
     </>
   );
 }
