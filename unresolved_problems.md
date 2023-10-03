@@ -13,8 +13,6 @@ kód struktúrális problémák:
 
 felhasználói szepmontból nézet problémák:
 
-- nincsen hiba üzenet arra hogyha a felhasználó szöveget kezd el be írni
-
 ```
 
 ```

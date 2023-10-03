@@ -24,23 +24,22 @@ function Main() {
     Custom: "",
     people: "",
   });
+
   //buttons state
   const [btnState, setBtnState] = useState(buttonData);
   const [btnValue, setBtnValue] = useState(0);
   //if all buttons inactive make the "btnValue" 0
   useEffect(() => {
-    console.log(iptState.Custom);
     const findTrueValue = btnState.find((item) => item.on === true);
 
     if (findTrueValue === undefined && btnValue !== 0) {
-      console.log("btn value set to 0");
       setBtnValue(0);
     }
   }),
     [btnState];
   //calculations and displaying result
   let percentageValue;
-  if (iptState.Custom !== "" && iptState.Custom !== "0") {
+  if (iptState.Custom !== "" && iptState.Custom !== 0) {
     percentageValue = iptState.Custom;
   } else {
     percentageValue = btnValue;
@@ -89,7 +88,9 @@ function Main() {
     setIptState((prev) => {
       return {
         ...prev,
-        [event.target.name]: event.target.value,
+        [event.target.name]: isNaN(Number(event.target.value))
+          ? event.target.value
+          : Number(event.target.value),
       };
     });
   }
@@ -131,7 +132,7 @@ function Main() {
   }
   //form validation
   //bill
-  if (iptState.bill > 10000) {
+  if (iptState.bill > 1000000) {
     setIptState((prev) => {
       return {
         ...prev,
@@ -142,10 +143,38 @@ function Main() {
     setErrorState((prev) => {
       return {
         ...prev,
-        bill: "can't be grater then 100000",
+        bill: "can't be grater then 1 000 000",
       };
     });
-  } else if (iptState.bill === "0") {
+  } else if (iptState.bill === 0) {
+    setIptState((prev) => {
+      return {
+        ...prev,
+        bill: "",
+      };
+    });
+
+    setErrorState((prev) => {
+      return {
+        ...prev,
+        bill: "can't be 0",
+      };
+    });
+  } else if (iptState.bill <= -1) {
+    setIptState((prev) => {
+      return {
+        ...prev,
+        bill: "",
+      };
+    });
+
+    setErrorState((prev) => {
+      return {
+        ...prev,
+        bill: "can't be lower than 0",
+      };
+    });
+  } else if (typeof iptState.bill === "string" && iptState.bill !== "") {
     setIptState((prev) => {
       return {
         ...prev,
@@ -155,12 +184,12 @@ function Main() {
     setErrorState((prev) => {
       return {
         ...prev,
-        bill: "can't be 0",
+        bill: "can't be text",
       };
     });
   }
   useEffect(() => {
-    if (iptState.bill > "0" && iptState.bill < "100000") {
+    if (iptState.bill > 0 && iptState.bill < 100000) {
       setErrorState((prev) => {
         return {
           ...prev,
@@ -184,7 +213,7 @@ function Main() {
         Custom: "can't be grater then 100",
       };
     });
-  } else if (iptState.Custom === "0") {
+  } else if (iptState.Custom === 0) {
     setIptState((prev) => {
       return {
         ...prev,
@@ -195,6 +224,33 @@ function Main() {
       return {
         ...prev,
         Custom: "can't be 0",
+      };
+    });
+  } else if (iptState.Custom <= -1) {
+    setIptState((prev) => {
+      return {
+        ...prev,
+        Custom: "",
+      };
+    });
+
+    setErrorState((prev) => {
+      return {
+        ...prev,
+        Custom: "can't be lower than 0",
+      };
+    });
+  } else if (typeof iptState.Custom === "string" && iptState.Custom !== "") {
+    setIptState((prev) => {
+      return {
+        ...prev,
+        Custom: "",
+      };
+    });
+    setErrorState((prev) => {
+      return {
+        ...prev,
+        Custom: "can't be text",
       };
     });
   }
@@ -223,7 +279,7 @@ function Main() {
         people: "can't be grater then 1000",
       };
     });
-  } else if (iptState.people === "0") {
+  } else if (iptState.people === 0) {
     setIptState((prev) => {
       return {
         ...prev,
@@ -236,9 +292,36 @@ function Main() {
         people: "can't be 0",
       };
     });
+  } else if (iptState.people <= -1) {
+    setIptState((prev) => {
+      return {
+        ...prev,
+        people: "",
+      };
+    });
+
+    setErrorState((prev) => {
+      return {
+        ...prev,
+        people: "can't be lower than 0",
+      };
+    });
+  } else if (typeof iptState.people === "string" && iptState.people !== "") {
+    setIptState((prev) => {
+      return {
+        ...prev,
+        people: "",
+      };
+    });
+    setErrorState((prev) => {
+      return {
+        ...prev,
+        people: "can't be text",
+      };
+    });
   }
   useEffect(() => {
-    if (iptState.people > "0" && iptState.people < "1000") {
+    if (iptState.people > 0 && iptState.people < 1000) {
       setErrorState((prev) => {
         return {
           ...prev,
@@ -247,6 +330,9 @@ function Main() {
       });
     }
   }, [iptState.people]);
+
+  //test consol logs
+
   return (
     <div className=" lg:flex lg:justify-center ">
       <main
