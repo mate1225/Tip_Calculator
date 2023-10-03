@@ -12,11 +12,13 @@ function InputBoxes({
         type="text"
         onChange={handleChange}
         className={` relative appearance-none rounded-[0.3125rem]  
-        border-2 border-solid border-inputBG  bg-inputBG 
+        border-2 border-solid   bg-inputBG 
        py-[0.38rem] pr-[1.08rem]  text-right
         text-VeryDarkCyan caret-StrongCyan placeholder:text-[1.5rem] placeholder:text-DarkGrayishCyan 
          ${
-           error !== "" ? "border-Error" : "focus:border-StrongCyan"
+           error !== ""
+             ? "border-Error"
+             : "border-inputBG focus:border-StrongCyan"
          } focus:outline-none`}
         placeholder={placeholderText}
         name={inputName}

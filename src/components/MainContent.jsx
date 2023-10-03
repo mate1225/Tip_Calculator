@@ -237,14 +237,14 @@ function Main() {
               onChange={handleInputChange}
               className={` relative    
         appearance-none rounded-[0.3125rem] border-2  border-solid 
-        border-inputBG bg-inputBG   py-[0.38rem]  
+         bg-inputBG   py-[0.38rem]  
        pr-[1.08rem]  text-right text-VeryDarkCyan
         caret-StrongCyan placeholder:text-[1.5rem]
          placeholder:text-DarkGrayishCyan 
           focus:outline-none ${
             errorState.Custom !== ""
-              ? "  focus:border-Error"
-              : "focus:border-StrongCyan"
+              ? "border-Error"
+              : "border-inputBG focus:border-StrongCyan"
           }`}
               placeholder="Custom"
               name="Custom"
