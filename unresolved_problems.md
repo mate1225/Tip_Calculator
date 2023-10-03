@@ -11,7 +11,8 @@ kód struktúrális problémák:
 </div>
 ```
 
-felhasználói szepmontból nézet problémák:
+- le lehetne még egyszerűsíteni néhány részt
+  felhasználói szepmontból nézet problémák:
 
 ```
 
