@@ -11,10 +11,7 @@ function InputBoxes({
       <input
         type="text"
         onChange={handleChange}
-        className={` relative appearance-none rounded-[0.3125rem]  
-        border-2 border-solid   bg-inputBG 
-       py-[0.38rem] pr-[1.08rem]  text-right
-        text-VeryDarkCyan caret-StrongCyan placeholder:text-[1.5rem] placeholder:text-DarkGrayishCyan 
+        className={`relative appearance-none rounded-[0.3125rem] border-2 border-solid bg-inputBG py-[0.38rem] pr-[1.08rem]  text-right text-VeryDarkCyan caret-StrongCyan placeholder:text-[1.5rem] placeholder:text-DarkGrayishCyan 
          ${
            error !== ""
              ? "border-Error"

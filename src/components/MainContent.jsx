@@ -204,10 +204,7 @@ function Main() {
 
   return (
     <div className=" lg:flex lg:justify-center ">
-      <main
-        className="rounded-[1.56rem] bg-White pb-8 lg:flex lg:w-[57.5rem] 
-      lg:justify-between lg:pb-0"
-      >
+      <main className="rounded-[1.56rem] bg-White pb-8 lg:flex lg:w-[57.5rem] lg:justify-between lg:pb-0">
         <section className="p-8  lg:p-[3rem] lg:pr-0">
           <SectionHeader
             text={errorState.bill}
@@ -227,25 +224,16 @@ function Main() {
             title="Select Tip %"
             margin=" mb-4 mt-8"
           />
-          <div
-            className="grid grid-cols-2 gap-4 lg:w-[23.7rem] lg:grid-cols-3
-           lg:grid-rows-2 lg:gap-x-[0.87rem]"
-          >
+          <div className="grid grid-cols-2 gap-4 lg:w-[23.7rem] lg:grid-cols-3 lg:grid-rows-2 lg:gap-x-[0.87rem]">
             {buttonElements}
             <input
               type="text"
               onChange={handleInputChange}
-              className={` relative    
-        appearance-none rounded-[0.3125rem] border-2  border-solid 
-         bg-inputBG   py-[0.38rem]  
-       pr-[1.08rem]  text-right text-VeryDarkCyan
-        caret-StrongCyan placeholder:text-[1.5rem]
-         placeholder:text-DarkGrayishCyan 
-          focus:outline-none ${
-            errorState.Custom !== ""
-              ? "border-Error"
-              : "border-inputBG focus:border-StrongCyan"
-          }`}
+              className={` relative appearance-none rounded-[0.3125rem] border-2 border-solid bg-inputBG py-[0.38rem] pr-[1.08rem] text-right text-VeryDarkCyan caret-StrongCyan placeholder:text-[1.5rem] placeholder:text-DarkGrayishCyan focus:outline-none ${
+                errorState.Custom !== ""
+                  ? "border-Error"
+                  : "border-inputBG focus:border-StrongCyan"
+              }`}
               placeholder="Custom"
               name="Custom"
               value={iptState.Custom}
@@ -265,11 +253,7 @@ function Main() {
             error={errorState.people}
           />
         </section>
-        <section
-          className=" mx-6  flex-col rounded-[0.9375rem] bg-VeryDarkCyan pb-6 
-        pl-6 pr-[1.37rem] pt-[2.44rem] lg:m-8 lg:flex lg:h-[26.1rem]
-         lg:w-[25.8rem] lg:justify-between"
-        >
+        <section className="mx-6 flex-col rounded-[0.9375rem] bg-VeryDarkCyan pb-6 pl-6 pr-[1.37rem] pt-[2.44rem] lg:m-8 lg:flex lg:h-[26.1rem] lg:w-[25.8rem] lg:justify-between">
           <div>
             <Sum result={tip()} title="Tip Amount" />
             <Sum result={total()} title="Total" />
